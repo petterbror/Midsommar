@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midsommarplanerare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Chosen Palette: Swedish Summer House -->
+    <!-- Application Structure Plan: A two-tab single-page application. View 1, "Mat & Meny", presents the daily meal plan with clear visual icons for dietary needs (vegetarian, milk-free) to facilitate at-a-glance planning. View 2, "Handlingslista", is an interactive checklist. This structure was chosen to separate the two main user tasks: planning (what are we eating?) and execution (what do we need to buy?). This task-oriented design is more user-friendly than a single long-scrolling page, especially on mobile devices during a shopping trip. Key interactions include view switching, checking off items, a progress bar for visual feedback, and a filter to hide completed items, making the shopping process more efficient. -->
+    <!-- Visualization & Content Choices: Report Info: Shopping List -> Goal: Track shopping progress -> Viz/Presentation Method: Interactive checklist with a dynamic progress bar -> Interaction: Users check items, the progress bar updates, and a filter can hide completed items -> Justification: For a checklist, a progress bar is a more intuitive and direct visualization of completion than a chart. It provides immediate feedback on the user's task. The filter directly enhances the core task of shopping by reducing clutter. | Report Info: Meal Plan with dietary needs -> Goal: Inform and clarify -> Viz/Presentation Method: Structured text cards with icons -> Interaction: Static view with scannable icons -> Justification: Clarity and quick reference are paramount for the meal plan. Icons (🌱,💧) are a universally understood and efficient way to convey dietary information without user interaction. Library/Method: Vanilla JS for state management and DOM manipulation, Tailwind CSS for styling. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-active { background-color: #0d9488; color: white; }
+        .tab-inactive { background-color: #f0fdfa; color: #115e59; }
+        .checkbox-custom:checked + label span:first-child { background-color: #0d9488; border-color: #0d9488; }
+        .checkbox-custom:checked + label span:last-child { text-decoration: line-through; color: #9ca3af; }
+        .progress-bar-inner { transition: width 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="container mx-auto max-w-4xl p-4 sm:p-6">
+
+        <!-- HEADER -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold themed-primary mb-2">Midsommar på Båten ⚓️</h1>
+            <p class="themed-secondary">En interaktiv plan för mat och inköp.</p>
+        </header>
+
+        <!-- TABS -->
+        <div class="flex justify-center rounded-lg shadow-lg p-1 themed-card mb-6">
+            <button id="tab-meny" class="tab-active w-1/2 py-2 px-4 rounded-md font-semibold transition-all duration-300">Mat & Meny</button>
+            <button id="tab-lista" class="tab-inactive w-1/2 py-2 px-4 rounded-md font-semibold transition-all duration-300">Handlingslista</button>
+        </div>
+
+        <!-- CONTENT VIEWS -->
+        <main>
+            <!-- MENY VIEW -->
+            <div id="view-meny">
+                <div class="themed-card p-6 rounded-lg shadow-lg themed-border mb-6">
+                    <h2 class="text-xl font-bold themed-primary mb-3">Grundförutsättningar</h2>
+                    <ul class="list-disc list-inside space-y-2 themed-text">
+                        <li>Sju personer är med på båten, varav ett barn.</li>
+                        <li>En person är <span class="font-semibold themed-primary">vegetarian</span>. Rätter anpassade för detta är märkta med 🌱.</li>
+                        <li>En person är <span class="font-semibold themed-primary">mjölkproteinallergiker</span>. Mjölkfria alternativ är märkta med 💧.</li>
+                    </ul>
+                </div>
+
+                <div id="menu-container" class="space-y-6">
+                    <!-- Menu sections will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- LISTA VIEW -->
+            <div id="view-lista" class="hidden">
+                <div class="themed-card p-6 rounded-lg shadow-lg themed-border mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold themed-primary">Inköpslista</h2>
+                        <button id="filter-button" class="text-sm themed-card themed-border themed-primary hover:opacity-80 px-4 py-2 rounded-full transition-all duration-200">Dölj handlade</button>
+                    </div>
+                    <div>
+                        <div class="flex justify-between items-center text-sm mb-2">
+                            <span class="font-medium themed-primary">Framsteg</span>
+                            <span id="progress-text" class="font-semibold themed-primary">0 / 0</span>
+                        </div>
+                        <div class="w-full themed-progress-bg rounded-full h-2.5">
+                            <div id="progress-bar" class="themed-progress-bar h-2.5 rounded-full progress-bar-inner transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="shopping-list-container" class="space-y-4"></div>
+                
+                <!-- Add new item form -->
+                <div class="mt-6 themed-card p-6 rounded-lg shadow-lg themed-border">
+                    <h3 class="text-lg font-semibold themed-primary mb-4">Lägg till önskemål</h3>
+                    <form id="add-item-form" class="space-y-4">
+                        <div>
+                            <label for="new-item-text" class="block text-sm font-medium themed-text mb-2">Beskrivning</label>
+                            <input type="text" 
+                                   id="new-item-text" 
+                                   class="w-full px-4 py-2 themed-input themed-border rounded-lg themed-text placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" 
+                                   placeholder="Skriv in önskemål..."
+                                   required>
+                        </div>
+                        <div>
+                            <label for="new-item-category" class="block text-sm font-medium themed-text mb-2">Kategori</label>
+                            <select id="new-item-category"
+                                    class="w-full px-4 py-2 themed-input themed-border rounded-lg themed-text placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="">Välj kategori...</option>
+                            </select>
+                        </div>
+                        <button type="submit" 
+                                class="w-full themed-primary-bg themed-text-light px-4 py-2 rounded-lg hover:opacity-80 transition-colors font-semibold">
+                            Lägg till
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Comment Modal -->
+    <div id="comment-modal" class="fixed inset-0 bg-slate-900/90 hidden flex items-center justify-center">
+        <div class="bg-slate-800 p-6 rounded-lg max-w-md w-full mx-4 border border-teal-500/20">
+            <h3 class="text-lg font-semibold text-teal-400 mb-4">Lägg till kommentar</h3>
+            <form id="comment-form" class="space-y-4">
+                <input type="hidden" id="comment-section-id">
+                <div>
+                    <label for="comment-text" class="block text-sm font-medium text-slate-300 mb-2">Kommentar</label>
+                    <textarea id="comment-text" 
+                              rows="3" 
+                              class="w-full px-4 py-2 bg-slate-700/50 border border-teal-500/30 rounded-lg text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent" 
+                              required></textarea>
+                </div>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" 
+                            id="close-modal" 
+                            class="px-4 py-2 text-slate-400 hover:text-slate-200 transition-colors">
+                        Avbryt
+                    </button>
+                    <button type="submit" 
+                            class="px-4 py-2 bg-teal-500 text-slate-900 rounded-lg hover:bg-teal-400 transition-colors font-semibold">
+                        Spara
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="supabase.js"></script>
+    <script src="menu.js"></script>
+    <script src="shoppingList.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
