@@ -158,6 +158,18 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 themeSwitcher.style.transform = '';
             }, 300);
+
+            // Fun confetti explosion!
+            if (window.confetti) {
+                confetti({
+                    particleCount: 120,
+                    spread: 90,
+                    origin: { y: 0.7 },
+                    colors: [
+                        '#1976D2', '#FFD600', '#A3B18A', '#34495E', '#FF00FF', '#00FFFF', '#FFFF00', '#43A047', '#E53935'
+                    ]
+                });
+            }
         });
     }
 

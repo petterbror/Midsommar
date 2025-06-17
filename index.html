@@ -10,10 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    <!-- Chosen Palette: Swedish Summer House -->
-    <!-- Application Structure Plan: A two-tab single-page application. View 1, "Mat & Meny", presents the daily meal plan with clear visual icons for dietary needs (vegetarian, milk-free) to facilitate at-a-glance planning. View 2, "Handlingslista", is an interactive checklist. This structure was chosen to separate the two main user tasks: planning (what are we eating?) and execution (what do we need to buy?). This task-oriented design is more user-friendly than a single long-scrolling page, especially on mobile devices during a shopping trip. Key interactions include view switching, checking off items, a progress bar for visual feedback, and a filter to hide completed items, making the shopping process more efficient. -->
-    <!-- Visualization & Content Choices: Report Info: Shopping List -> Goal: Track shopping progress -> Viz/Presentation Method: Interactive checklist with a dynamic progress bar -> Interaction: Users check items, the progress bar updates, and a filter can hide completed items -> Justification: For a checklist, a progress bar is a more intuitive and direct visualization of completion than a chart. It provides immediate feedback on the user's task. The filter directly enhances the core task of shopping by reducing clutter. | Report Info: Meal Plan with dietary needs -> Goal: Inform and clarify -> Viz/Presentation Method: Structured text cards with icons -> Interaction: Static view with scannable icons -> Justification: Clarity and quick reference are paramount for the meal plan. Icons (🌱,💧) are a universally understood and efficient way to convey dietary information without user interaction. Library/Method: Vanilla JS for state management and DOM manipulation, Tailwind CSS for styling. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body { font-family: 'Inter', sans-serif; }
         .tab-active { background-color: #0d9488; color: white; }
@@ -114,5 +110,6 @@
     <script src="menu.js"></script>
     <script src="shoppingList.js"></script>
     <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
