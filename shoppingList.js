@@ -234,6 +234,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     await addNewItem(input.value.trim(), category);
                     input.value = '';
                     form.querySelector('#new-item-category').value = '';
+                    form.classList.add('hidden');
                 }
             });
         }

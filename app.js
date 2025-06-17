@@ -178,4 +178,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check login status on load
     checkLoginStatus();
+
+    // Add item button functionality
+    const addItemButtons = document.querySelectorAll('#add-item, #add-item-top');
+    const addItemForm = document.getElementById('add-item-form');
+    
+    if (addItemButtons.length && addItemForm) {
+        addItemButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                addItemForm.classList.toggle('hidden');
+                // Focus the input when showing the form
+                if (!addItemForm.classList.contains('hidden')) {
+                    document.getElementById('new-item-text').focus();
+                }
+            });
+        });
+
+        // Hide form when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!addItemForm.contains(e.target) && !Array.from(addItemButtons).some(button => button.contains(e.target))) {
+                addItemForm.classList.add('hidden');
+            }
+        });
+    }
 }); 
