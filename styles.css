@@ -1,20 +1,20 @@
 :root {
     /* --- Clean Professional Default Theme --- */
-    --color-bg-main: #F8F9FA;           /* Crisp white */
-    --color-bg-card: #F4F6F8;           /* Very light gray for cards */
+    --color-bg: #1a1a1a;
+    --color-bg-card: #2d2d2d;
     --color-bg-accent: #E3EAF2;         /* Subtle blue accent */
-    --color-primary: #1976D2;           /* Professional blue */
-    --color-primary-light: #63A4FF;     /* Lighter blue */
-    --color-primary-dark: #004BA0;      /* Dark blue */
+    --color-primary: #4ade80;
+    --color-primary-light: rgba(74, 222, 128, 0.2);
+    --color-primary-dark: #22c55e;
     --color-accent: #000000;            /* bright teal accent */
     --color-accent-light: #E3EAF2;      /* Subtle blue */
     --color-accent-dark: #1976D2;       /* Professional blue */
-    --color-success: #43A047;           /* Professional green */
+    --color-success: #4ade80;
     --color-danger: #E53935;            /* Professional red */
-    --color-text: #222B36;              /* Neutral dark text */
-    --color-text-light: #FFFFFF;        /* Light text */
-    --color-border: #E3EAF2;            /* Subtle blue border */
-    --color-shadow: rgba(25, 118, 210, 0.06);
+    --color-text: #e5e5e5;
+    --color-text-light: #ffffff;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-shadow: rgba(0, 0, 0, 0.3);
 
     /* Background colors */
     --color-bg-dark: #1B4332;      /* Dark forest green */
@@ -34,64 +34,64 @@
 
 /* Meadow Theme */
 [data-theme="meadow"] {
-    --color-bg-main: linear-gradient(135deg, #EBEBEB 0%, #A3B18A 100%); /* Misty to green */
-    --color-bg-card: #E3D5B8;           /* Linnebeige (soft yellow) for cards */
+    --color-bg: #1a2f1a;
+    --color-bg-card: #2d4a2d;
     --color-bg-accent: #A3B18A;         /* Salviagrön accent */
-    --color-primary: #A3B18A;           /* Salviagrön */
-    --color-primary-light: #D7BDE2;     /* Syrenlila */
-    --color-primary-dark: #588157;      /* Lövgrön */
+    --color-primary: #4ade80;
+    --color-primary-light: rgba(74, 222, 128, 0.2);
+    --color-primary-dark: #22c55e;
     --color-accent: #0d9488;            /* bright teal accent */
     --color-accent-light: #EBEBEB;      /* Morgondis */
     --color-accent-dark: #A3B18A;       /* Salviagrön */
     --color-success: #85C1E9;           /* Blue for contrast */
     --color-danger: #D7263D;            /* Jordgubbsröd for contrast */
-    --color-text: #3E4C2D;              /* Deep green text */
-    --color-text-light: #EBEBEB;        /* Light text */
-    --color-border: #A3B18A;            /* Green border */
-    --color-shadow: rgba(167, 177, 138, 0.10);
+    --color-text: #e5f0e5;
+    --color-text-light: #ffffff;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-shadow: rgba(0, 0, 0, 0.3);
 }
 
 /* Archipelago Theme */
 [data-theme="archipelago"] {
-    --color-bg-main: linear-gradient(135deg, #B2BABB 0%, #85C1E9 100%); /* Granite gray to blue */
-    --color-bg-card: #A3B18A;           /* Green for cards */
+    --color-bg: #1a2a3a;
+    --color-bg-card: #2d3d4d;
     --color-bg-accent: #E2C044;         /* Vetekrans (yellow) accent */
-    --color-primary: #34495E;           /* Skymningsblå */
-    --color-primary-light: #85C1E9;     /* Himmelsblå */
-    --color-primary-dark: #8C2D25;      /* Falu Röd */
+    --color-primary: #4ade80;
+    --color-primary-light: rgba(74, 222, 128, 0.2);
+    --color-primary-dark: #22c55e;
     --color-accent: #fcdf79;            /* Vetekrans */
     --color-accent-light: #FDFEFE;      /* Snickerivit */
     --color-accent-dark: #8C2D25;       /* Falu Röd */
     --color-success: #A3B18A;           /* Green */
     --color-danger: #8C2D25;            /* Falu Röd */
-    --color-text: #34495E;              /* Skymningsblå (text) */
-    --color-text-light: #FDFEFE;        /* Light text */
-    --color-border: #34495E;            /* Blue border */
-    --color-shadow: rgba(140, 45, 37, 0.10);
+    --color-text: #e5eaf0;
+    --color-text-light: #ffffff;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-shadow: rgba(0, 0, 0, 0.3);
 }
 
 /* Wild Theme */
 [data-theme="wild"] {
-    --color-bg-main: #000000;
-    --color-bg-card: #1a001a;
+    --color-bg: #2a1a2a;
+    --color-bg-card: #3d2d3d;
     --color-bg-accent: #FF00FF;
-    --color-primary: #FF00FF;
-    --color-primary-light: #00FFFF;
-    --color-primary-dark: #800080;
+    --color-primary: #4ade80;
+    --color-primary-light: rgba(74, 222, 128, 0.2);
+    --color-primary-dark: #22c55e;
     --color-accent: #FFFF00;
     --color-accent-light: #00FF00;
     --color-accent-dark: #FF0000;
     --color-success: #00FF00;
     --color-danger: #FF0000;
-    --color-text: #FFFFFF;
-    --color-text-light: #FFFFFF;
-    --color-border: #FF00FF;
-    --color-shadow: rgba(255, 0, 255, 0.2);
+    --color-text: #f0e5f0;
+    --color-text-light: #ffffff;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-shadow: rgba(0, 0, 0, 0.3);
 }
 
 /* Base styles */
 body {
-    background: var(--color-bg-main);
+    background: var(--color-bg);
     color: var(--color-text);
     font-family: 'Inter', sans-serif;
     transition: all 0.3s ease;
@@ -330,4 +330,74 @@ input:focus, textarea:focus, select:focus {
 .themed-input {
     background-color: var(--color-bg-card);
     color: var(--color-text);
+}
+
+/* Utility classes */
+.themed-bg {
+    background-color: var(--color-bg);
+}
+
+/* Comment modal specific styles */
+#comment-modal {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#comment-modal .modal-content {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
+#comment-modal input,
+#comment-modal textarea {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
+#comment-modal label {
+    color: var(--color-text);
+}
+
+/* Wishlist badge */
+.wishlist-badge {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Progress bar */
+.progress-bar {
+    background-color: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-card);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark);
 } 
