@@ -1,21 +1,24 @@
-# Midsommar Planerareare
+# Midsommarplanerare
 
-En interaktiv webbapplikation för att planera midsommarfirande med mat och inköpslista.
+En interaktiv webbapplikation för att planera ett oförglömligt midsommarfirande med mat, inköpslista och festlig design.
 
 ## Funktioner
 
-- Interaktiv menyplan med kommentarsmöjlighet för varje måltid
-- Dynamisk inköpslista med kategorisering
-- Möjlighet att lägga till önskemål
-- Progress tracking för inköpslistan
-- Responsiv design för både desktop och mobil
+- **Inloggning:** Enkel inloggning med användarnamn och lösenord (hårdkodat).
+- **Flera färgteman:** Fyra distinkta teman (Swedish Summer, Meadow, Archipelago, Wild) med smidig övergång och tema-knapp 🎨.
+- **Konfetti-effekt:** Varje gång temat byts firas det med färgglad konfetti på skärmen.
+- **Interaktiv menyplan:** Dag-för-dag-meny med möjlighet att lägga till och kommentera måltider.
+- **Dynamisk inköpslista:** Kategoriserad, interaktiv lista med progressbar och filter för att dölja avklarade.
+- **Responsiv design:** Fungerar på både desktop och mobil.
+- **Databas:** All data (meny, kommentarer, inköpslista) lagras i Supabase.
 
-## Teknisk Stack
+## Teknisk stack
 
 - HTML5
-- CSS3 (med Tailwind CSS)
+- CSS3 (med Tailwind CSS och egna CSS-variabler för teman)
 - JavaScript (Vanilla)
-- Supabase (för databas)
+- Supabase (databas)
+- [canvas-confetti](https://www.kirilv.com/canvas-confetti/) för konfetti-effekt
 
 ## Setup
 
@@ -33,6 +36,20 @@ create table shopping_items (
   created_at timestamp with time zone default timezone('utc'::text, now())
 );
 
+-- Menu items table
+create table menu_items (
+  id uuid default uuid_generate_v4() primary key,
+  day text not null,
+  day_title text not null,
+  meal_order int not null,
+  title text not null,
+  description text,
+  items jsonb,
+  is_vegetarian boolean default false,
+  is_dairy_free boolean default false,
+  updated_at timestamp with time zone default timezone('utc'::text, now())
+);
+
 -- Menu comments table
 create table menu_comments (
   id uuid default uuid_generate_v4() primary key,
@@ -43,7 +60,7 @@ create table menu_comments (
 ```
 
 3. Uppdatera `supabase.js` med dina Supabase credentials:
-```javascript
+```js
 const supabaseUrl = 'YOUR_SUPABASE_URL'
 const supabaseKey = 'YOUR_SUPABASE_ANON_KEY'
 ```
@@ -54,6 +71,12 @@ python -m http.server 8000
 ```
 
 5. Öppna `http://localhost:8000` i din webbläsare
+
+## Inloggning
+
+För att använda appen krävs inloggning:
+- **Användarnamn:** `midsommar`
+- **Lösenord:** `ela2025!`
 
 ## Deployment
 
