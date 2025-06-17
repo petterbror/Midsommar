@@ -6,7 +6,7 @@
     --color-primary: #1976D2;           /* Professional blue */
     --color-primary-light: #63A4FF;     /* Lighter blue */
     --color-primary-dark: #004BA0;      /* Dark blue */
-    --color-accent: #90CAF9;            /* Light blue accent */
+    --color-accent: #000000;            /* bright teal accent */
     --color-accent-light: #E3EAF2;      /* Subtle blue */
     --color-accent-dark: #1976D2;       /* Professional blue */
     --color-success: #43A047;           /* Professional green */
@@ -40,7 +40,7 @@
     --color-primary: #A3B18A;           /* Salviagrön */
     --color-primary-light: #D7BDE2;     /* Syrenlila */
     --color-primary-dark: #588157;      /* Lövgrön */
-    --color-accent: #E3D5B8;            /* Linnebeige */
+    --color-accent: #0d9488;            /* bright teal accent */
     --color-accent-light: #EBEBEB;      /* Morgondis */
     --color-accent-dark: #A3B18A;       /* Salviagrön */
     --color-success: #85C1E9;           /* Blue for contrast */
@@ -59,7 +59,7 @@
     --color-primary: #34495E;           /* Skymningsblå */
     --color-primary-light: #85C1E9;     /* Himmelsblå */
     --color-primary-dark: #8C2D25;      /* Falu Röd */
-    --color-accent: #E2C044;            /* Vetekrans */
+    --color-accent: #fcdf79;            /* Vetekrans */
     --color-accent-light: #FDFEFE;      /* Snickerivit */
     --color-accent-dark: #8C2D25;       /* Falu Röd */
     --color-success: #A3B18A;           /* Green */

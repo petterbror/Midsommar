@@ -24,13 +24,11 @@
     </style>
 </head>
 <body class="min-h-screen">
-
-    <div class="container mx-auto max-w-4xl p-4 sm:p-6">
-
+    <div id="app-content" class="container mx-auto max-w-4xl p-4 sm:p-6">
         <!-- HEADER -->
         <header class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold themed-primary mb-2">Midsommar på Båten ⚓️</h1>
-            <p class="themed-secondary">En interaktiv plan för mat och inköp.</p>
+            <h1 class="text-3xl sm:text-4xl font-bold themed-primary mb-2">Midsommar i Mellanfjärden ⚓️</h1>
+            <p class="themed-secondary">En oförglömlig planering för en oförglömlig midsommar.</p>
         </header>
 
         <!-- TABS -->
@@ -44,7 +42,7 @@
             <!-- MENY VIEW -->
             <div id="view-meny">
                 <div class="themed-card p-6 rounded-lg shadow-lg themed-border mb-6">
-                    <h2 class="text-xl font-bold themed-primary mb-3">Grundförutsättningar</h2>
+                    <h2 class="text-xl font-bold themed-primary mb-3">The basics...</h2>
                     <ul class="list-disc list-inside space-y-2 themed-text">
                         <li>Sju personer är med på båten, varav ett barn.</li>
                         <li>En person är <span class="font-semibold themed-primary">vegetarian</span>. Rätter anpassade för detta är märkta med 🌱.</li>
@@ -59,47 +57,26 @@
 
             <!-- LISTA VIEW -->
             <div id="view-lista" class="hidden">
-                <div class="themed-card p-6 rounded-lg shadow-lg themed-border mb-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-bold themed-primary">Inköpslista</h2>
-                        <button id="filter-button" class="text-sm themed-card themed-border themed-primary hover:opacity-80 px-4 py-2 rounded-full transition-all duration-200">Dölj handlade</button>
-                    </div>
-                    <div>
-                        <div class="flex justify-between items-center text-sm mb-2">
-                            <span class="font-medium themed-primary">Framsteg</span>
-                            <span id="progress-text" class="font-semibold themed-primary">0 / 0</span>
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-64 h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div id="progress-bar" class="h-full bg-teal-500 transition-all duration-300" style="width: 0%"></div>
                         </div>
-                        <div class="w-full themed-progress-bg rounded-full h-2.5">
-                            <div id="progress-bar" class="themed-progress-bar h-2.5 rounded-full progress-bar-inner transition-all duration-300" style="width: 0%"></div>
-                        </div>
+                        <span id="progress-text" class="text-sm themed-text">0% klart</span>
                     </div>
+                    <button id="toggle-completed" class="px-4 py-2 themed-card rounded-lg themed-text hover:opacity-80 transition-colors">
+                        Visa alla
+                    </button>
                 </div>
-                <div id="shopping-list-container" class="space-y-4"></div>
-                
-                <!-- Add new item form -->
-                <div class="mt-6 themed-card p-6 rounded-lg shadow-lg themed-border">
-                    <h3 class="text-lg font-semibold themed-primary mb-4">Lägg till önskemål</h3>
-                    <form id="add-item-form" class="space-y-4">
-                        <div>
-                            <label for="new-item-text" class="block text-sm font-medium themed-text mb-2">Beskrivning</label>
-                            <input type="text" 
-                                   id="new-item-text" 
-                                   class="w-full px-4 py-2 themed-input themed-border rounded-lg themed-text placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" 
-                                   placeholder="Skriv in önskemål..."
-                                   required>
-                        </div>
-                        <div>
-                            <label for="new-item-category" class="block text-sm font-medium themed-text mb-2">Kategori</label>
-                            <select id="new-item-category"
-                                    class="w-full px-4 py-2 themed-input themed-border rounded-lg themed-text placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                                <option value="">Välj kategori...</option>
-                            </select>
-                        </div>
-                        <button type="submit" 
-                                class="w-full themed-primary-bg themed-text-light px-4 py-2 rounded-lg hover:opacity-80 transition-colors font-semibold">
-                            Lägg till
-                        </button>
-                    </form>
+
+                <div id="shopping-list-container" class="space-y-8">
+                    <!-- Shopping list will be dynamically loaded here -->
+                </div>
+
+                <div class="fixed bottom-6 right-6">
+                    <button id="add-item" class="w-12 h-12 rounded-full themed-primary-bg themed-text-light shadow-lg hover:opacity-80 transition-colors flex items-center justify-center text-2xl">
+                        +
+                    </button>
                 </div>
             </div>
         </main>

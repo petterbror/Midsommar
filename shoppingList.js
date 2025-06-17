@@ -107,8 +107,8 @@ async function handleEdit(id, currentText) {
 }
 
 async function handleDelete(id) {
-    const password = prompt('Ange admin lösenord för att ta bort varan:');
-    if (password !== 'midsommar2024') {
+    const password = prompt('Ange lösenord för att ta bort varan:');
+    if (password !== '!!!') {
         alert('Felaktigt lösenord');
         return;
     }

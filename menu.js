@@ -128,8 +128,8 @@ async function renderMenu() {
 
 // Open edit modal
 function openEditModal(meal) {
-    const password = prompt('Ange admin lösenord för att redigera menyn:');
-    if (password !== 'midsommar2024') {
+    const password = prompt('Ange lösenord för att redigera menyn:');
+    if (password !== '!!!') {
         alert('Felaktigt lösenord');
         return;
     }
